@@ -19,9 +19,9 @@ See training and test tips at: https://github.com/junyanz/pytorch-CycleGAN-and-p
 See frequently asked questions at: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/docs/qa.md
 """
 import time
-from options.train_options import TrainOptions
-from data import create_dataset
-from models import create_model
+from .options.train_options import TrainOptions
+from .data import create_dataset
+from .models import create_model
 import os
 import wandb
 
@@ -63,6 +63,7 @@ if __name__ == '__main__':
                 # Log visualizations
                 model.compute_visuals()
                 visuals = model.get_current_visuals()
+
                 pred_log = [wandb.Image(y, caption=x) for x, y in visuals.items()]
                 wandb.log({"Prediction Samples": pred_log}, commit=False)
 
